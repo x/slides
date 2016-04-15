@@ -35,34 +35,34 @@ user=> (doseq [n (take 5 (lazy-nums))] (println n))
 2
 3
 4
-5
 nil
 user=> (doseq [n (take 5 (lazy-nums))] (println n))
+5
 6
 7
 8
-9
-10
 nil
 ```
 
 # #3
 ```clojure
+user=> (def counter (atom 0))
+#'user/counter
+user=> (defn lazy-nums [] (lazy-seq (cons (swap! counter inc) (lazy-nums))))
+#'user/lazy-nums
 user=> (def my-lazy-nums (lazy-nums))
 #'user/my-lazy-nums
 user=> (doseq [n (take 5 my-lazy-nums)] (println n))
-11
-12
-13
-14
-15
+1
+2
+3
+4
 nil
 user=> (doseq [n (take 5 my-lazy-nums)] (println n))
-11
-12
-13
-14
-15
+1
+2
+3
+4
 nil
 ```
 
@@ -77,7 +77,6 @@ nil
         (increment-in-db src trg min 1)))))
 ```
 
-
 # #5
 ```clojure
 (doseq [msg-batch (partition 5000 (messages (consumer {...}) "pings"))]
@@ -87,7 +86,6 @@ nil
                                          first-pings)]
       (increment-in-db src trg min (count ps)))))
 ```
-
 
 # #6
 ```clojure
