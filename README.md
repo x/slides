@@ -219,6 +219,11 @@ nil
 
 # #13
 ```clojure
+(priority-map-keyfn-by (comp :ts peek) <)
+```
+
+# #14
+```clojure
 (defn add-new-positions [positions-map new-positions]
   (reduce (fn [m {:keys [source target] :as new-pos}]
             (update pos-map
@@ -239,7 +244,4 @@ nil
 
 (defn get-matching-positions [positions-map {:keys [source target]}]
   (get positions-map [source target]))
-
-(loop [positions-map (priority-map-keyfn-by (comp :ts peek) <)]
-  e..)
 ```
