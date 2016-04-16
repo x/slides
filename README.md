@@ -198,7 +198,8 @@ nil
         (let [matches (get-matching-positions positions clicks
               imputed-clicks (impute click matches))]
           (doseq [click imputed-clicks]
-            (write-to-db click)))))))
+            (write-to-db click))))
+	  (recur))))
 ```
 
 # #12
