@@ -100,21 +100,6 @@ nil
       (recur))))
 ```
 
-# #7
-```clojure
-(let [stream (create-message-stream (consumer {...}) "pings")]
-  (loop [last nil]
-    (let [end-at (+ (System/currentTimeMillis) 30000)
-          msg-batch (take-while #(< (System/currentTimeMillis) end-at)
-                                stream)
-          pings (map unpack msg-batch)
-          first-pings (filter first? pings)]
-      (doseq [[[src trg min] ps] (group-by (juxt :http-refer :path get-minute)
-                                           first-pings)]
-        (increment-in-db src trg min (count ps)))
-      (recur start))))
-```
-
 # #8
 ```clojure
 (let [stream (create-message-stream (consumer {...}) "pings")
@@ -159,6 +144,7 @@ nil
             (increment-in-db src trg min (count ps)))
           (.commitSync consumer)
           (recur))))))
+```
 
 # #11
 ```clojure
